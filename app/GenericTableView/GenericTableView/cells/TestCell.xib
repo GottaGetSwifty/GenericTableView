@@ -25,12 +25,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXX-o2-noS">
+                        <rect key="frame" x="329" y="0.0" width="46" height="43.5"/>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="buttonWasClicked:" destination="ZC0-tx-7gv" eventType="touchUpInside" id="pUb-Jb-94l"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Pqr-U2-l6m" firstAttribute="bottom" secondItem="pB5-Se-BWg" secondAttribute="bottomMargin" constant="2" id="2DL-Ll-7Gb"/>
                     <constraint firstItem="Pqr-U2-l6m" firstAttribute="leading" secondItem="pB5-Se-BWg" secondAttribute="leadingMargin" id="8vh-nR-vlv"/>
                     <constraint firstItem="Pqr-U2-l6m" firstAttribute="top" secondItem="pB5-Se-BWg" secondAttribute="topMargin" constant="2" id="KOU-Gl-Zc1"/>
+                    <constraint firstAttribute="bottom" secondItem="cXX-o2-noS" secondAttribute="bottom" id="jcU-13-efa"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Pqr-U2-l6m" secondAttribute="trailing" id="u9f-p7-Is9"/>
+                    <constraint firstAttribute="trailing" secondItem="cXX-o2-noS" secondAttribute="trailing" id="zet-rJ-XPx"/>
+                    <constraint firstItem="cXX-o2-noS" firstAttribute="top" secondItem="pB5-Se-BWg" secondAttribute="top" id="zrm-yt-lAy"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

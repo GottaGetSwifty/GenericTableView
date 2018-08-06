@@ -8,170 +8,89 @@
 
 import UIKit
 
-extension UITableView {
-    static var AutomaticDimension: CGFloat {
-        return UITableViewAutomaticDimension
+struct TestTableData: TableData {
+    
+    
+    var sections: [TableSection] = []
+    
+    init() {
+        sections = []
     }
-}
-
-enum CellCreationInfo {
-    case nib(nibName: String)
-    case `class`(`class`: AnyClass)
-}
-
-protocol TableData {
-    var sections: [TableSection] { get }
-}
-
-struct TestTableData {
-    var sections = [TableSection(header: TestHeaderRepresentor(model: ExampleTestHeaderModel(title: "Header")), 
-                                 rows: [TestCellRepresentor(model: ExampleTestCellModel(title: "First")),
-                                        TestCellRepresentor(model: ExampleTestCellModel(title: "Second"))], 
-                                 footer: TestFooterRepresentor(model: ExampleTestFooterModel(title: "Footer")))]
-}
-
-struct TableSection {
-    var header: AnyHeaderFooterRepresentor?
-    var rows: [AnyCellRepresentor]
-    var footer: AnyHeaderFooterRepresentor?
-}
-
-
-
-protocol TableItemRepresentor {
-    associatedtype CellType
-    associatedtype CellModelType
+    init(clickAction: @escaping () -> ()) {
+        sections = [TableSection(header: TestHeaderRepresentor(model: ExampleTestHeaderModel(title: "Header")), 
+                                 rows: [TestCellRepresentor(model: ExampleTestCellModel(title: "First", clickAction: clickAction)),
+                                        TestSecondCellRepresentor(model: ExampleTestCellModel(title: "Second", clickAction: clickAction))], 
+                      footer: nil)]
+    }
     
-    var model: CellModelType { get }
-    
-    var identifier: String { get }
-    var creationInfo: CellCreationInfo { get }
-}
-
-protocol AnyHeaderFooterRepresentor {
-    func makeAndUpdateCell(from tableView: UITableView) -> UIView?
-}
-
-protocol HeaderFooterRepresentor: TableItemRepresentor, AnyHeaderFooterRepresentor {
-    
-}
-
-protocol AnyCellRepresentor {
-    func makeAndUpdateCell(from tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
-}
-
-protocol CellRepresentor: TableItemRepresentor, AnyCellRepresentor {
-     
+    static func registerCells(with tableView: UITableView) {
+        tableView.registerReusableCellNib(cellType: TestCell.self)
+        tableView.registerReusableCellNib(cellType: SecondTestCell.self)
+        tableView.registerReusableHeaderFooterView(viewType: TestHeader.self)
+        tableView.registerReusableHeaderFooterView(viewType: TestFooter.self)
+    }
 }
 
 struct TestHeaderRepresentor: HeaderFooterRepresentor {
     
-    typealias CellType = TestHeader.Type
-    
-    var identifier: String = "TestHeader"
-    var creationInfo: CellCreationInfo = .nib(nibName: "TestHeader")
+    typealias CellType = TestHeader
     
     var model: TestHeader.ModelType
     
     init(model: CellModelType) {
         self.model = model
     }
-    
-    func makeAndUpdateCell(from tableView: UITableView) -> UIView? {
-        guard let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? TestHeader else {
-            return nil
-        }
-        cell.update(with: model)
-        return cell
-    }
 }
 
 struct TestFooterRepresentor: HeaderFooterRepresentor {
-    typealias CellType = TestFooter.Type
-    
-    var identifier: String = "TestFooter"
-    var creationInfo: CellCreationInfo = .nib(nibName: "TestFooter")
+    typealias CellType = TestFooter
     
     var model: TestFooter.ModelType
     
     init(model: CellModelType) {
         self.model = model
     }
-    
-    func makeAndUpdateCell(from tableView: UITableView) -> UIView? {
-        guard let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? TestFooter else {
-            return nil
-        }
-        cell.update(with: model)
-        return cell
-    }
 }
 
 struct TestCellRepresentor: CellRepresentor {
-    typealias CellType = TestCell.Type
-    
-    var identifier: String = "TestCell"
-    var creationInfo: CellCreationInfo = .nib(nibName: "TestCell")
+    typealias CellType = TestCell
     
     var model: TestCell.ModelType
     
     init(model: CellModelType) {
         self.model = model
     }
+}
+
+struct TestSecondCellRepresentor: CellRepresentor {
+    typealias CellType = SecondTestCell
     
-    func makeAndUpdateCell(from tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? TestCell else {
-            return UITableViewCell()
-        }
-        cell.update(with: model)
-        return cell
+    var model: SecondTestCell.ModelType
+    
+    init(model: CellModelType) {
+        self.model = model
     }
 }
 
+class TestGenericTableVC: GenericTableViewController<TestTableData> {
 
-
-class TestGenericTableVC: UITableViewController {
-
-    var data = TestTableData()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.register(UINib(nibName: "TestCell", bundle: nil), forCellReuseIdentifier: "TestCell")
-        tableView.register(UINib(nibName: "TestHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "TestHeader")
-        tableView.register(UINib(nibName: "TestFooter", bundle: nil), forHeaderFooterViewReuseIdentifier: "TestFooter")
         
         tableView.rowHeight = UITableView.AutomaticDimension
         tableView.sectionHeaderHeight = UITableView.AutomaticDimension
         tableView.estimatedSectionHeaderHeight = 60
         tableView.sectionFooterHeight = UITableView.AutomaticDimension
         tableView.estimatedSectionFooterHeight = 40
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return data.sections.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.sections[section].rows.count
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return data.sections[section].header?.makeAndUpdateCell(from: tableView)
+        
+        data = TestTableData(clickAction: clicked)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return data.sections[indexPath.section].rows[indexPath.row].makeAndUpdateCell(from: tableView, indexPath: indexPath)
+    func clicked() {
+        print("Receieved click")
     }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return data.sections[section].footer?.makeAndUpdateCell(from: tableView)
-    }
-    
-
-    
 
     /*
     // Override to support editing the table view.

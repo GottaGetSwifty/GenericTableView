@@ -15,7 +15,7 @@ protocol TestHeaderModel {
     var title: String { get }
 }
 
-class TestHeader: UITableViewHeaderFooterView, ModelUpdatable {
+class TestHeader: UITableViewHeaderFooterView, ModelUpdatable, NibReusable {
 
     @IBOutlet weak var titleLabel: UILabel!
     

@@ -18,12 +18,14 @@
 		929D7CB5211765E200875C9A /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D7CB4211765E200875C9A /* GenericTableViewController.swift */; };
 		929D7CB72117664E00875C9A /* TestGenericTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D7CB62117664E00875C9A /* TestGenericTableVC.swift */; };
 		929D7CB92117668C00875C9A /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D7CB82117668C00875C9A /* TestCell.swift */; };
-		929D7CBB211766A200875C9A /* GenericTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D7CBA211766A200875C9A /* GenericTableViewCell.swift */; };
 		929D7CBD211766B200875C9A /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929D7CBC211766B200875C9A /* TestCell.xib */; };
 		929D7CC0211768BB00875C9A /* TestHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D7CBF211768BB00875C9A /* TestHeader.swift */; };
 		929D7CC2211768C200875C9A /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929D7CC1211768C200875C9A /* TestHeader.xib */; };
 		929D7CC4211768CB00875C9A /* TestFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929D7CC3211768CB00875C9A /* TestFooter.swift */; };
 		929D7CC6211768E300875C9A /* TestFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929D7CC5211768E300875C9A /* TestFooter.xib */; };
+		92E79B152118A0C100FE8A3D /* SecondTestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E79B142118A0C100FE8A3D /* SecondTestCell.swift */; };
+		92E79B172118A0C800FE8A3D /* SecondTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E79B162118A0C800FE8A3D /* SecondTestCell.xib */; };
+		92E79B1A2118A1A300FE8A3D /* NibHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E79B192118A1A300FE8A3D /* NibHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,12 +63,14 @@
 		929D7CB4211765E200875C9A /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		929D7CB62117664E00875C9A /* TestGenericTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGenericTableVC.swift; sourceTree = "<group>"; };
 		929D7CB82117668C00875C9A /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
-		929D7CBA211766A200875C9A /* GenericTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewCell.swift; sourceTree = "<group>"; };
 		929D7CBC211766B200875C9A /* TestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
 		929D7CBF211768BB00875C9A /* TestHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHeader.swift; sourceTree = "<group>"; };
 		929D7CC1211768C200875C9A /* TestHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestHeader.xib; sourceTree = "<group>"; };
 		929D7CC3211768CB00875C9A /* TestFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFooter.swift; sourceTree = "<group>"; };
 		929D7CC5211768E300875C9A /* TestFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestFooter.xib; sourceTree = "<group>"; };
+		92E79B142118A0C100FE8A3D /* SecondTestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTestCell.swift; sourceTree = "<group>"; };
+		92E79B162118A0C800FE8A3D /* SecondTestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondTestCell.xib; sourceTree = "<group>"; };
+		92E79B192118A1A300FE8A3D /* NibHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +125,8 @@
 				929D7C832117652400875C9A /* AppDelegate.swift */,
 				929D7C852117652400875C9A /* ViewController.swift */,
 				929D7CB4211765E200875C9A /* GenericTableViewController.swift */,
-				929D7CBA211766A200875C9A /* GenericTableViewCell.swift */,
 				929D7CB62117664E00875C9A /* TestGenericTableVC.swift */,
+				92E79B192118A1A300FE8A3D /* NibHelper.swift */,
 				929D7C872117652400875C9A /* Main.storyboard */,
 				929D7C8D2117652500875C9A /* Assets.xcassets */,
 				929D7C8F2117652500875C9A /* LaunchScreen.storyboard */,
@@ -155,6 +159,8 @@
 			children = (
 				929D7CB82117668C00875C9A /* TestCell.swift */,
 				929D7CBC211766B200875C9A /* TestCell.xib */,
+				92E79B142118A0C100FE8A3D /* SecondTestCell.swift */,
+				92E79B162118A0C800FE8A3D /* SecondTestCell.xib */,
 				929D7CBF211768BB00875C9A /* TestHeader.swift */,
 				929D7CC1211768C200875C9A /* TestHeader.xib */,
 				929D7CC3211768CB00875C9A /* TestFooter.swift */,
@@ -267,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E79B172118A0C800FE8A3D /* SecondTestCell.xib in Resources */,
 				929D7CC6211768E300875C9A /* TestFooter.xib in Resources */,
 				929D7CC2211768C200875C9A /* TestHeader.xib in Resources */,
 				929D7C912117652500875C9A /* LaunchScreen.storyboard in Resources */,
@@ -298,14 +305,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				929D7CC4211768CB00875C9A /* TestFooter.swift in Sources */,
+				92E79B1A2118A1A300FE8A3D /* NibHelper.swift in Sources */,
 				929D7C8C2117652400875C9A /* GenericTableView.xcdatamodeld in Sources */,
 				929D7CB92117668C00875C9A /* TestCell.swift in Sources */,
 				929D7CB72117664E00875C9A /* TestGenericTableVC.swift in Sources */,
 				929D7C862117652400875C9A /* ViewController.swift in Sources */,
+				92E79B152118A0C100FE8A3D /* SecondTestCell.swift in Sources */,
 				929D7CC0211768BB00875C9A /* TestHeader.swift in Sources */,
 				929D7CB5211765E200875C9A /* GenericTableViewController.swift in Sources */,
 				929D7C842117652400875C9A /* AppDelegate.swift in Sources */,
-				929D7CBB211766A200875C9A /* GenericTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

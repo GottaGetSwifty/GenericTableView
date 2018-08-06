@@ -10,22 +10,24 @@ import UIKit
 
 struct ExampleTestCellModel: TestCellModel {
     var title: String
+    var clickAction: () -> ()
 }
+
 protocol TestCellModel {
     var title: String { get }
+    var clickAction: () -> () { get }
 }
 
-protocol ModelUpdatable {
-    associatedtype ModelType 
-    func update(with model: ModelType)
-}
-
-class TestCell: UITableViewCell, ModelUpdatable {
+class TestCell: UITableViewCell, ModelUpdatable, NibReusable {
     @IBOutlet weak var titleLabel: UILabel!
     
+    var clickAction: (() -> ())? = nil
     func update(with model: TestCellModel)   {
-        
+        clickAction = model.clickAction
         titleLabel.text = model.title
-        
     } 
+    
+    @IBAction func buttonWasClicked(_ sender: Any) {
+        clickAction?()
+    }
 }

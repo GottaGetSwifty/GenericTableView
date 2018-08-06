@@ -8,19 +8,8 @@
 
 import UIKit
 
-struct ExampleTestCellModel: TestCellModel {
-    var title: String
-}
-protocol TestCellModel {
-    var title: String { get }
-}
 
-protocol ModelUpdatable {
-    associatedtype ModelType 
-    func update(with model: ModelType)
-}
-
-class TestCell: UITableViewCell, ModelUpdatable {
+class SecondTestCell: UITableViewCell, ModelUpdatable, NibReusable {
     @IBOutlet weak var titleLabel: UILabel!
     
     func update(with model: TestCellModel)   {
